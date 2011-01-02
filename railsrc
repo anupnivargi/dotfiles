@@ -1,0 +1,12 @@
+rails_env = ENV['RAILS_ENV']
+project = File.basename(Dir.pwd)
+
+IRB.conf[:PROMPT] ||= {}
+IRB.conf[:PROMPT][:RAILS] = {
+  :PROMPT_I => "#{project}> ",
+  :PROMPT_S => "#{project}* ",
+  :PROMPT_C => "#{project}? ",
+  :RETURN => "=> %s\n"
+}
+IRB.conf[:PROMPT_MODE] = :RAILS
+
