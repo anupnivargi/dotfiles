@@ -1,0 +1,32 @@
+# -*- ruby -*-
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_mapping(/^spec\/.*_spec\.rb$/) do |file|
+    file
+  end
+
+  autotest.add_mapping(/^spec\/(controllers|helpers|lib|models|views)\/.*_spec\.rb$/) do|file|
+    file
+  end
+
+end
+
+module Autotest::Notify
+  def self.notify(title, msg, img, pri='low', time=3000)
+    `notify-send -i #{img} -u #{pri} -t #{time} '#{title}' '#{msg}'`
+  end
+
+  Autotest.add_hook :ran_command do |autotest|
+    results = autotest.results
+    output = results.last.strip
+    images = "~/Pictures/autotest_images"
+    if output  =~ /[1-9]\d*\sfailures?/
+      notify "Failure", "#{output}", "#{images}/fail.png", 'critical', 10000
+      #elsif output  =~ /[1-9]\d*\spending?/
+      #  notify "Pending", "#{output}", "#{images}/pending.png", 'normal', 10000
+    else
+      notify "Passed", "#{output}", "#{images}/pass.png",'normal', 10000
+    end
+  end
+end
+
+
