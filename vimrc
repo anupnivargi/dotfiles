@@ -1,5 +1,6 @@
 " Vim Configuration
 " Author- Anup Nivargi
+" ~/.vimrc
 " =================================================================================================
 set nocompatible                  " Load VIM in nocompatible mode to use enhanced features
 
@@ -15,20 +16,21 @@ set hidden                        " Handle multpile buffers better
 
 " Visual Information
 set showmode                      " Show the current mode
+set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
 set number                        " Show line numbers
 set wildmenu                      " Enhanced command line completition
 set laststatus=2                  " Show status line all the time. Takes a extra line on the screen
 set cmdheight=2                   " The commandbar height
 "set ruler                        " Always show current position
 
-" Error handeling 
+" Error handeling
 set noerrorbells
 set novisualbell
 
 " Visual Enhancement
 syntax enable                     " Enable syntax highlighting
 set cursorline                    " Highlight the cursor line
-set showmatch                     " Highlight matching bracets 
+set showmatch                     " Highlight matching bracets
 set magic                         " Set magic on, for regular expressions
 colorscheme default               " Colorscheme to use in normal VI
 
@@ -41,9 +43,11 @@ set noswapfile
 set expandtab                     " Use spaces instead if tabs
 set autoindent                    " Auto indent
 set smartindent                   " Smart indent
-set wrap                          " Wrap lines
+set shiftwidth=2                  " Maintain 2 level indentation
+set tabstop=2                     " 2 level indentation for Tab
+set wrap linebreak textwidth=0    " Wrap lines
 
-" Search 
+" Search
 set ignorecase                    " Case insensitive search
 set smartcase                     " Case sensitive when search contains capital
 set hlsearch                      " Highlight search things
@@ -53,3 +57,7 @@ set incsearch                     " Incremental search
 
 " Aliases
 let mapleader = ","
+nmap <leader>n o<ESC><CR>
+nmap <leader>j gj<CR>
+nmap <leader>k gk<CR>
+nmap <F12> :NERDTreeToggle<CR>

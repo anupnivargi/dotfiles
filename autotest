@@ -1,10 +1,11 @@
 # -*- ruby -*-
 Autotest.add_hook :initialize do |autotest|
+
   autotest.add_mapping(/^spec\/.*_spec\.rb$/) do |file|
     file
   end
 
-  autotest.add_mapping(/^spec\/(controllers|helpers|lib|models|views)\/.*_spec\.rb$/) do|file|
+  autotest.add_mapping(/^spec\/(controllers|helpers|lib|models|views)\/.*_spec\.rb$/) do |file|
     file
   end
 
@@ -16,17 +17,20 @@ module Autotest::Notify
   end
 
   Autotest.add_hook :ran_command do |autotest|
-    results = autotest.results
-    output = results.last.strip
-    images = "~/Pictures/autotest_images"
-    if output  =~ /[1-9]\d*\sfailures?/
-      notify "Failure", "#{output}", "#{images}/fail.png", 'critical', 10000
+    begin
+      results = autotest.results
+      output = results.last.gsub(/\e\[(\d+)m/,'')
+      images = "~/Pictures/autotest_images"
+      if output  =~ /[1-9]\d*\sfailures?/
+        notify "Failure", "#{output}", "#{images}/fail.png", 'critical', 10000
       #elsif output  =~ /[1-9]\d*\spending?/
-      #  notify "Pending", "#{output}", "#{images}/pending.png", 'normal', 10000
-    else
-      notify "Passed", "#{output}", "#{images}/pass.png",'normal', 10000
+        #  notify "Pending", "#{output}", "#{images}/pending.png", 'normal', 10000
+      else
+        notify "Passed", "#{output}", "#{images}/pass.png",'normal', 10000
+      end
+    rescue Exception => e
+      p "#{e.message} \n #{e.backtrace}"
     end
   end
 end
-
 
