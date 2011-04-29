@@ -32,7 +32,6 @@ syntax enable                     " Enable syntax highlighting
 set cursorline                    " Highlight the cursor line
 set showmatch                     " Highlight matching bracets
 set magic                         " Set magic on, for regular expressions
-colorscheme default               " Colorscheme to use in normal VI
 
 " Backups
 set nobackup
@@ -57,7 +56,7 @@ set incsearch                     " Incremental search
 
 " Aliases
 let mapleader = ","
-nmap <leader>n o<ESC><CR>
-nmap <leader>j gj<CR>
-nmap <leader>k gk<CR>
-nmap <F12> :NERDTreeToggle<CR>
+map <leader>n o<ESC><CR>
+map <A-j> gj
+map <A-k> gk
+map <F12> :NERDTreeToggle<CR>

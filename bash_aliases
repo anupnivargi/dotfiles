@@ -1,6 +1,6 @@
 # Rails Aliases
-alias rss='rails server'
-alias rsc='rails console'
+alias rss='ruby script/server'
+alias rsc='ruby script/console'
 
 # Git Aliases
 alias gadd='git add'

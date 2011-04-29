@@ -3,7 +3,7 @@
 " Looks
 set guifont=Monaco\ 10  " Font family and font size
 set background=dark                  " Background
-colorscheme sunburst                " Colorscheme
+colorscheme jellybeans                 " Colorscheme
 
 " Other GUI options
 set guioptions+=c                    " Reload the files edited outside VIM without alert
