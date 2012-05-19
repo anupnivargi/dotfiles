@@ -2,6 +2,9 @@
 " Author- Anup Nivargi
 " ~/.vimrc
 " =================================================================================================
+"
+call pathogen#infect()
+
 set nocompatible                  " Load VIM in nocompatible mode to use enhanced features
 
 set shell=/bin/bash               " Set the shell path
@@ -14,6 +17,15 @@ set autoread                      " Update file when changed from outside
 
 set hidden                        " Handle multpile buffers better
 
+"Ignore directories and files
+"Version Control Files
+set wildignore+=.git,.svn
+"Images
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.bmp
+"Other
+set wildignore+=*.swf,*.air,*.psd,*.ttf,*.woff,*.svg,*.eot
+"Tmp and Log
+set wildignore+=tmp,log
 " Visual Information
 set showmode                      " Show the current mode
 set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
@@ -22,6 +34,9 @@ set wildmenu                      " Enhanced command line completition
 set laststatus=2                  " Show status line all the time. Takes a extra line on the screen
 set cmdheight=2                   " The commandbar height
 "set ruler                        " Always show current position
+
+"Set the tag file search order
+set tags=./tags;
 
 " Error handeling
 set noerrorbells
@@ -60,3 +75,11 @@ map <leader>n o<ESC><CR>
 map <A-j> gj
 map <A-k> gk
 map <F12> :NERDTreeToggle<CR>
+"Use F5 to auto indent full file and jump to last cursor position
+map   <silent> <F5> mmgg=G'm
+"Use F5 to auto indent full file and jump to last cursor position in insert
+"mode
+imap  <silent> <F5> <Esc> mmgg=G'm
+"Command-T automatically open selected files in new tabs
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
